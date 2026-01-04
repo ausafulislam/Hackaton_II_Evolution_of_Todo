@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch --all --prune)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/create-new-feature.ps1\" -Json -Number 1 -ShortName \"phase1-todo-cli\" -FeatureDescription \"Create the Phase I specification for the Evolution of Todo project. Phase I Scope: - In-memory Python console application - Single user - No persistence beyond runtime Required Features \\(Basic Level ONLY\\): 1. Add Task 2. View Task List 3. Update Task 4. Delete Task 5. Mark Task Complete / Incomplete Specification must include: - Clear user stories for each feature - Task data model \\(fields and constraints\\) - CLI interaction flow \\(menu-based\\) - Acceptance criteria for each feature - Error cases \\(invalid ID, empty task list\\) Strict Constraints: - No databases - No files - No authentication - No web or API concepts - No advanced or intermediate features - No references to future phases This specification must comply with the global constitution and fully define WHAT Phase I must deliver.\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/setup-plan.ps1\" -Json)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/update-agent-context.ps1\" -AgentType claude)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json -RequireTasks -IncludeTasks)",
+      "Bash(git rev-parse --git-dir)",
+      "Bash(python -m unittest tests.test_todo_app -v)"
+    ]
+  }
+}
