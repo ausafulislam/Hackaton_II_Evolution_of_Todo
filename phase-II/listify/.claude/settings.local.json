@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(sp.constitution)",
+      "Skill(sp.phr)",
+      "Skill(sp.specify)",
+      "Bash(git fetch --all --prune)",
+      "Bash(.specify/scripts/powershell/create-new-feature.ps1 -Json \"$ARGUMENTS\" --json --number 1 --short-name \"todo-api-backend\" \"Create the Phase II specification for the Evolution of Todo project - Backend-only Todo Web API using Python FastAPI with REST-style endpoints for todo task management\")",
+      "Bash(.specify/scripts/powershell/setup-plan.ps1 -Json)"
+    ]
+  }
+}
