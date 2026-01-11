@@ -1,55 +1,62 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT:
+Version change: N/A (initial creation) → 1.0.0
+Added sections: All sections as this is initial creation
+Removed sections: None
+Templates requiring updates: N/A
+Follow-up TODOs: None
+-->
+# Evolution of Todo Phase II (Listify) Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Spec-Driven Development Mandate
+No code may be written without approved specifications and tasks; All work must follow: Constitution → Specifications → Plan → Tasks → Implementation
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Agent Behavior Rules
+No manual coding by humans; No feature invention outside approved specs; Refinement must occur at spec level, not code level
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Phase Governance
+Each phase must remain strictly scoped; Phase II features must not leak into Phase I or future phases; Architecture can evolve only through updated specifications and plans
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Technology Stack Compliance
+Python for backend; Next.js for frontend; FastAPI, SQLModel, Neon DB for persistence; JWT-based authentication; Cloud-native readiness
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Quality Assurance Standards
+Modular, maintainable, and testable code; Clear separation of concerns between frontend and backend; Stateless services where required; Secure data handling
 
-### [PRINCIPLE_6_NAME]
+### Implementation Discipline
+Smallest viable changes; No unrelated modifications; Clear acceptance criteria; Explicit error handling
 
+## Additional Constraints
 
-[PRINCIPLE__DESCRIPTION]
+### Backend Requirements
+Backend must be implemented in Python using FastAPI framework with SQLModel for database interactions and Neon DB as the persistence layer.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### Frontend Requirements
+Frontend must be built using Next.js framework with proper separation from backend services and stateless API interactions.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Security Standards
+JWT-based authentication must be implemented for all protected endpoints; Data handling must follow secure practices; Proper input validation and sanitization required.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### Deployment Standards
+Application must be designed for cloud-native deployment with containerization support; Services must be stateless where possible; Proper environment configuration management required.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+
+### Specification Process
+All features must begin with approved specifications before any implementation work begins; Specifications must include clear acceptance criteria and test scenarios.
+
+### Task Management
+Tasks must be derived from approved specifications following the Spec-Driven Development methodology; Each task must be testable and verifiable against specification requirements.
+
+### Code Review Requirements
+All code changes must comply with the technology stack requirements; Changes must maintain separation of concerns between frontend and backend; Security considerations must be verified.
+
+### Quality Gates
+All code must pass automated tests before merging; Code must follow established quality principles; Architecture decisions must align with approved specifications.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution acts as the supreme governing document for all agents in Phase II of the Evolution of Todo project (Listify). All development activities must comply with these principles. Any deviation requires formal amendment to this constitution with proper approval and documentation.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-01-10 | **Last Amended**: 2026-01-10
