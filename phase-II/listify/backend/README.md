@@ -8,6 +8,7 @@ This is a FastAPI-based backend application for the Todo API (Phase II) as part 
 - In-memory data storage (runtime only)
 - Full CRUD operations for tasks
 - Task completion toggling
+- CORS enabled for frontend integration
 - No authentication required (Phase II specification)
 
 ## Endpoints
@@ -32,6 +33,10 @@ This is a FastAPI-based backend application for the Todo API (Phase II) as part 
    ```
 
 3. The API will be available at `http://localhost:8000`
+
+## CORS Configuration
+
+This backend is configured with CORS middleware to allow cross-origin requests from frontend applications. By default, it allows all origins for development purposes. In production, the origins should be restricted to specific domains.
 
 ## Testing
 
