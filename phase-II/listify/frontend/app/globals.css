@@ -10,3 +10,25 @@
         @apply bg-white text-sm text-gray-800 antialiased;
     }
 }
+
+@layer utilities {
+    .animate-progress {
+        width: 30%;
+        animation: progressAnimation 1.5s ease-in-out infinite;
+    }
+
+    @keyframes progressAnimation {
+        0% {
+            margin-left: 0%;
+            width: 30%;
+        }
+        50% {
+            margin-left: 70%;
+            width: 30%;
+        }
+        100% {
+            margin-left: 0%;
+            width: 30%;
+        }
+    }
+}

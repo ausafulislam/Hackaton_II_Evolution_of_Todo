@@ -1,54 +1,60 @@
-import { BotIcon, WorkflowIcon, PlugIcon, ShieldCheckIcon, BarChartIcon, CpuIcon } from "lucide-react";
+import {
+    ListChecksIcon,
+    CheckCircleIcon,
+    LayoutDashboardIcon,
+    ShieldCheckIcon,
+    BellIcon,
+    SparklesIcon
+} from "lucide-react";
 import { IFeature } from "../types";
 
 export const features: IFeature[] = [
     {
-        title: "AI Agent Builder",
+        title: "Create & Manage Tasks",
         description:
-            "Design intelligent agents with modular logic, memory and tools - no complex setup required.",
-        icon: BotIcon,
+            "Easily add, edit and organize your daily tasks so nothing important is ever forgotten.",
+        icon: ListChecksIcon,
         cardBg: "bg-orange-100",
         iconBg: "bg-orange-500"
     },
     {
-        title: "Workflow Orchestration",
+        title: "Mark Tasks Complete",
         description:
-            "Chain actions, triggers and decisions to automate multi-step workflows reliably.",
-        icon: WorkflowIcon,
+            "Track progress by marking tasks as complete and stay motivated throughout your day.",
+        icon: CheckCircleIcon,
         cardBg: "bg-green-100",
         iconBg: "bg-green-500"
     },
     {
-        title: "Plug & Play Integrations",
+        title: "Clean & Focused Interface",
         description:
-            "Connect APIs, databases and third-party tools seamlessly with built-in connectors.",
-        icon: PlugIcon,
+            "A distraction-free dashboard designed to keep you focused and productive.",
+        icon: LayoutDashboardIcon,
         cardBg: "bg-indigo-100",
         iconBg: "bg-indigo-500"
     },
     {
-        title: "Production-Ready Security",
+        title: "Secure & Reliable",
         description:
-            "Built-in safeguards, rate limits and isolation to run agents safely at scale and protect your data.",
+            "Built on a modern backend architecture to keep your tasks safe and always accessible.",
         icon: ShieldCheckIcon,
-
         cardBg: "bg-pink-100",
         iconBg: "bg-pink-500"
     },
     {
-        title: "Real-Time Monitoring",
+        title: "Smart Reminders (Coming Soon)",
         description:
-            "Track executions, logs and performance metrics in real time and get insights into your agent's behavior.",
-        icon: BarChartIcon,
+            "Get notified about important tasks with reminders and alerts planned for future updates.",
+        icon: BellIcon,
         cardBg: "bg-lime-100",
         iconBg: "bg-lime-500"
     },
     {
-        title: "Scalable Infrastructure",
+        title: "AI Assistance (Planned)",
         description:
-            "Run agents efficiently across workloads with automatic scaling and optimization.",
-        icon: CpuIcon,
+            "Upcoming AI-powered features and voice interaction to make task management effortless.",
+        icon: SparklesIcon,
         cardBg: "bg-gray-50",
-        iconBg: "bg-orange-500",
-    },
-]
+        iconBg: "bg-orange-500"
+    }
+];

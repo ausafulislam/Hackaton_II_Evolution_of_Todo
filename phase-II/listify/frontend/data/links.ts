@@ -14,11 +14,7 @@ export const links: ILink[] = [
         href: "#features",
     },
     {
-        name: "Testimonials",
-        href: "#testimonials",
-    },
-    {
-        name: "Pricing",
-        href: "#pricing",
+        name: "FAQs",
+        href: "#faqs",
     }
 ];

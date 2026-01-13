@@ -8,21 +8,21 @@ export default function StatsSection() {
                     <h3 className="text-4xl font-semibold font-urbanist">
                         <CountUp from={0} to={3} />x
                     </h3>
-                    <p className="text-gray-500">Faster AI agent development</p>
+                    <p className="text-gray-500">Faster task organization</p>
                 </div>
 
                 <div className="flex flex-col items-center gap-4 text-center">
                     <h3 className="text-4xl font-semibold font-urbanist">
                         <CountUp from={0} to={60} />%
                     </h3>
-                    <p className="text-gray-500">Reduction in manual workflows</p>
+                    <p className="text-gray-500">Faster task completion</p>
                 </div>
 
                 <div className="flex flex-col items-center gap-4 text-center">
                     <h3 className="text-4xl font-semibold font-urbanist">
                         <CountUp from={0} to={99.9} />%
                     </h3>
-                    <p className="text-gray-500">Reliable agent execution uptime</p>
+                    <p className="text-gray-500">App reliability</p>
                 </div>
             </div>
         </section>

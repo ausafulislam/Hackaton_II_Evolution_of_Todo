@@ -2,28 +2,33 @@ import { IFaq } from "@/types";
 
 export const faqs: IFaq[] = [
     {
-        question: "What is Buildify?",
+        question: "What is Listify?",
         answer:
-            "Buildify is a platform designed to help teams build, deploy and scale AI agents efficiently. It provides tools for agent creation, workflow orchestration and production-ready execution.",
+            "Listify is a modern Todo web application that helps you create, manage and track your tasks in a simple and organized way.",
     },
     {
-        question: "Do I need prior AI or ML experience to use Buildify?",
+        question: "Is Listify free to use?",
         answer:
-            "No. Buildify is designed for both developers and non-experts, offering simple abstractions while still allowing advanced customization when needed.",
+            "Yes. Listify is currently free to use with core task management features. Pricing plans may be introduced in the future with advanced capabilities.",
     },
     {
-        question: "Can I integrate Buildify with my existing tools?",
+        question: "Does Listify support authentication?",
         answer:
-            "Yes. Buildify supports plug-and-play integrations with APIs, databases and third-party services to fit seamlessly into your existing stack.",
+            "Yes. Secure authentication is supported to keep your tasks private and accessible only to you.",
     },
     {
-        question: "Is Buildify suitable for production use?",
+        question: "Where is my data stored?",
         answer:
-            "Absolutely. Buildify includes monitoring, security controls and scalable infrastructure to ensure reliable performance in real-world production environments.",
+            "Your tasks are handled using a secure backend architecture. Database-backed storage is used to ensure reliability and data safety.",
     },
     {
-        question: "Can I customize or extend AI agents?",
+        question: "Are reminders and notifications available?",
         answer:
-            "Yes. You can customize agent logic, workflows and integrations, or extend functionality using your own services and APIs.",
+            "Not yet. Task reminders and notifications are planned for future updates to improve productivity.",
+    },
+    {
+        question: "Will Listify include AI or voice features?",
+        answer:
+            "Yes. AI-powered assistance and voice interaction are planned to make task management faster and more intuitive.",
     },
 ];
