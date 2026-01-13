@@ -13,9 +13,9 @@ export default function Page() {
             <StatsSection />
             <FeaturesSection />
             <FaqSection />
-            <OurTeamSection />
-            <PricingSection />
-            <TestimonialSection />
+            {/* <OurTeamSection /> */}
+            {/* <PricingSection /> */}
+            {/* <TestimonialSection /> */}
         </main>
     );
 }

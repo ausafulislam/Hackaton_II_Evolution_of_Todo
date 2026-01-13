@@ -17,7 +17,7 @@ export default function HeroSection() {
                             src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=50"
                             alt="userImage2" />
                     </div>
-                    <span>60K+</span>
+                    <span>1K+</span>
                     <div className="h-5 w-px mx-1 bg-white rounded-full" />
                     <span>Happy users worldwide</span>
                     <div className="h-5 w-px mx-1 bg-white rounded-full" />
@@ -28,7 +28,7 @@ export default function HeroSection() {
                 </AnimatedContent>
                 <AnimatedContent distance={30} delay={0.1} className="relative">
                     <h1 className="text-center font-urbanist text-5xl/15 md:text-6xl/18 mt-4 font-bold max-w-2xl">
-                        Build, Launch & Scale with AI agents.
+                        Organize your tasks. Simplify your life.
                     </h1>
                     <div className="absolute -top-5 right-13 hidden md:block">
                         <CustomIcon icon={SparkleIcon} dir="right" />
@@ -36,7 +36,7 @@ export default function HeroSection() {
                 </AnimatedContent>
                 <AnimatedContent distance={30} delay={0.2}>
                     <p className="text-center text-base/7 text-zinc-500 max-w-lg mt-4">
-                        Design, automate and deploy intelligent AI agents to power your products, workflows and business growth.
+                        Create, manage, and complete your daily tasks with a fast, secure, and beautifully designed Todo app built for productivity.
                     </p>
                 </AnimatedContent>
                 <AnimatedContent className="flex flex-col md:flex-row items-center gap-4 mt-6 w-full md:w-auto">

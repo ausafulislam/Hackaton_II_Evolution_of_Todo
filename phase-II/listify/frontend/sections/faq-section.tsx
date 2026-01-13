@@ -5,13 +5,13 @@ import { ChevronDownIcon, CircleQuestionMarkIcon } from "lucide-react";
 
 export default function FaqSection() {
     return (
-        <section className="border-y border-gray-200">
+        <section id="faqs" className="border-y border-gray-200">
             <div className="px-4 md:px-16 lg:px-24 xl:px-32">
                 <div className="p-4 pt-20 md:p-20 flex flex-col items-center max-w-7xl mx-auto justify-center border-x border-gray-200">
                     <SectionTitle
                         icon={CircleQuestionMarkIcon}
-                        title="Got questions?"
-                        subtitle="Everything you need to know about Buildify, AI agents and how to get started."
+                        title="Frequently asked questions"
+                        subtitle="Everything you need to know about Listify and how it helps you stay organized."
                     />
                 </div>
             </div>
@@ -20,7 +20,7 @@ export default function FaqSection() {
                     <div className="p-4 pt-20 md:p-20 space-y-6">
                         {faqs.map((faq, index) => (
                             <AnimatedContent key={index}>
-                                <details key={index} className="group bg-gray-50 border border-gray-200 rounded-xl" open={index === 0}>
+                                <details className="group bg-gray-50 border border-gray-200 rounded-xl" open={index === 0}>
                                     <summary className="flex items-center justify-between p-6 select-none">
                                         <h3 className="font-medium text-base">{faq.question}</h3>
                                         <ChevronDownIcon size={20} className="group-open:rotate-180" />
@@ -35,11 +35,11 @@ export default function FaqSection() {
                     <div className="p-4 pt-20 md:p-20">
                         <div className="sticky top-30 flex items-center justify-between gap-5 p-6 bg-violet-500 w-full rounded-xl mt-12">
                             <h3 className="text-lg text-white text-balance">
-                                Still have questions? Our team help you get started.
+                                Need help getting started with Listify?
                             </h3>
 
                             <a
-                                href="https://prebuiltui.com?ref=buildify"
+                                href="#"
                                 className="bg-white w-max shrink-0 hover:bg-gray-100 px-5 py-2 rounded-full"
                             >
                                 Contact support
@@ -49,5 +49,5 @@ export default function FaqSection() {
                 </div>
             </div>
         </section>
-    )
+    );
 }

@@ -13,17 +13,17 @@ export default function FeaturesSection() {
                             dir="left"
                             icon={SparkleIcon}
                             title="Core features"
-                            subtitle="Everything you need to build, deploy and scale AI agents - designed for speed, reliability and real-world production use."
+                            subtitle="Everything you need to organize tasks, stay productive and manage your daily work in one simple place."
                         />
                         <AnimatedContent className="p-4 md:p-6 bg-orange-500 w-full rounded-xl mt-12">
                             <p className="text-lg text-white">
-                                Trusted by teams building intelligent products with AI agents.
+                                A simple, fast and reliable Todo app designed to help you focus on what matters most.
                             </p>
 
-                            <a href="#" className="bg-white w-max hover:bg-gray-100 px-5 py-2 rounded-full mt-6 flex items-center gap-1" >
+                            {/* <a href="#" className="bg-white w-max hover:bg-gray-100 px-5 py-2 rounded-full mt-6 flex items-center gap-1" >
                                 Explore use cases
                                 <ArrowUpRightIcon size={20} />
-                            </a>
+                            </a> */}
                         </AnimatedContent>
                     </div>
                 </div>
