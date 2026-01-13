@@ -6,6 +6,10 @@ export const links: ILink[] = [
         href: "/",
     },
     {
+        name: "Todo",
+        href: "/todo",
+    },
+    {
         name: "Features",
         href: "#features",
     },
