@@ -1,6 +1,11 @@
+import React from 'react'
 
-import DashboardClientPage from "./dashboard-client";
-
-export default async function DashboardPage() {
-    return <DashboardClientPage />;
+const dashboardPage = () => {
+    return (
+        <div>
+            Dashboard Page
+        </div>
+    )
 }
+
+export default dashboardPage
