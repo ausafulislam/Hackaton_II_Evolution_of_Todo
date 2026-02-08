@@ -1,14 +1,21 @@
 // API service for Todo operations
+import { Task } from "@/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
-const USER_ID = process.env.NEXT_PUBLIC_USER_ID;
+
+interface TaskData {
+  title: string;
+  description?: string;
+  completed?: boolean;
+}
 
 /**
  * Fetch all tasks for a user
  */
-export const fetchTasks = async () => {
+export const fetchTasks = async (userId: string): Promise<Task[]> => {
+  if (!userId) return [];
   try {
-    const response = await fetch(`${BASE_URL}/api/${USER_ID}/tasks`);
+    const response = await fetch(`${BASE_URL}/api/${userId}/tasks`);
 
     if (!response.ok) {
       throw new Error(`Error fetching tasks: ${response.status} ${response.statusText}`);
@@ -24,9 +31,10 @@ export const fetchTasks = async () => {
 /**
  * Create a new task
  */
-export const createTask = async (taskData) => {
+export const createTask = async (userId: string, taskData: TaskData): Promise<Task> => {
+  if (!userId) throw new Error("User ID is required");
   try {
-    const response = await fetch(`${BASE_URL}/api/${USER_ID}/tasks`, {
+    const response = await fetch(`${BASE_URL}/api/${userId}/tasks`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -48,9 +56,10 @@ export const createTask = async (taskData) => {
 /**
  * Update an existing task
  */
-export const updateTask = async (taskId, taskData) => {
+export const updateTask = async (userId: string, taskId: string, taskData: Partial<TaskData>): Promise<Task> => {
+  if (!userId) throw new Error("User ID is required");
   try {
-    const response = await fetch(`${BASE_URL}/api/${USER_ID}/tasks/${taskId}`, {
+    const response = await fetch(`${BASE_URL}/api/${userId}/tasks/${taskId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -72,9 +81,10 @@ export const updateTask = async (taskId, taskData) => {
 /**
  * Delete a task
  */
-export const deleteTask = async (taskId) => {
+export const deleteTask = async (userId: string, taskId: string): Promise<{ message: string }> => {
+  if (!userId) throw new Error("User ID is required");
   try {
-    const response = await fetch(`${BASE_URL}/api/${USER_ID}/tasks/${taskId}`, {
+    const response = await fetch(`${BASE_URL}/api/${userId}/tasks/${taskId}`, {
       method: 'DELETE',
     });
 
@@ -92,9 +102,10 @@ export const deleteTask = async (taskId) => {
 /**
  * Toggle task completion status
  */
-export const toggleTaskCompletion = async (taskId) => {
+export const toggleTaskCompletion = async (userId: string, taskId: string): Promise<Task> => {
+  if (!userId) throw new Error("User ID is required");
   try {
-    const response = await fetch(`${BASE_URL}/api/${USER_ID}/tasks/${taskId}/complete`, {
+    const response = await fetch(`${BASE_URL}/api/${userId}/tasks/${taskId}/complete`, {
       method: 'PATCH',
     });
 

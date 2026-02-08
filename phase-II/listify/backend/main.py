@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import tasks
 
-app = FastAPI(title="Todo API Backend (Phase II)")
+app = FastAPI(title="Listify - Todo API Backend")
 
 # Add CORS middleware to allow frontend access
 app.add_middleware(
@@ -18,7 +18,7 @@ app.include_router(tasks.router, prefix="/api/{user_id}", tags=["tasks"])
 
 @app.get("/")
 def read_root():
-    return {"message": "Todo API Backend (Phase II) is running"}
+    return {"message": "Listify Todo API Backend is running"}
 
 if __name__ == "__main__":
     import uvicorn

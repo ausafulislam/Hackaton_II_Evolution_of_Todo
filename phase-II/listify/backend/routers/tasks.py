@@ -9,6 +9,7 @@ from data import (
     delete_task as data_delete_task,
     toggle_completion as data_toggle_completion
 )
+from sqlalchemy.exc import SQLAlchemyError
 
 router = APIRouter(tags=["tasks"])
 
@@ -17,8 +18,11 @@ async def get_tasks(user_id: str = Path(..., description="User ID")):
     """
     Retrieve all tasks for a specific user.
     """
-    tasks = data_get_tasks(user_id)
-    return tasks
+    try:
+        tasks = data_get_tasks(user_id)
+        return tasks
+    except SQLAlchemyError as e:
+        raise HTTPException(status_code=500, detail="Database connection error")
 
 
 @router.post("/tasks", response_model=Task, status_code=201)
@@ -33,8 +37,14 @@ async def create_task(
     if not task_create.title or task_create.title.strip() == "":
         raise HTTPException(status_code=400, detail="Title is required")
 
-    task = data_create_task(user_id, task_create)
-    return task
+    try:
+        task = data_create_task(user_id, task_create)
+        return task
+    except SQLAlchemyError as e:
+        # Check for Foreign Key violation (User doesn't exist)
+        if "foreign key constraint" in str(e).lower():
+             raise HTTPException(status_code=400, detail="User ID not found")
+        raise HTTPException(status_code=500, detail="Database error occurred")
 
 
 @router.get("/tasks/{id}", response_model=Task)
@@ -45,10 +55,13 @@ async def get_task(
     """
     Retrieve a specific task by ID.
     """
-    task = data_get_task(user_id, id)
-    if task is None:
-        raise HTTPException(status_code=404, detail="Task not found")
-    return task
+    try:
+        task = data_get_task(user_id, id)
+        if task is None:
+            raise HTTPException(status_code=404, detail="Task not found")
+        return task
+    except SQLAlchemyError as e:
+        raise HTTPException(status_code=500, detail="Database error occurred")
 
 
 @router.put("/tasks/{id}", response_model=Task)
@@ -60,10 +73,13 @@ async def update_task(
     """
     Update a specific task.
     """
-    task = data_update_task(user_id, id, task_update)
-    if task is None:
-        raise HTTPException(status_code=404, detail="Task not found")
-    return task
+    try:
+        task = data_update_task(user_id, id, task_update)
+        if task is None:
+            raise HTTPException(status_code=404, detail="Task not found")
+        return task
+    except SQLAlchemyError as e:
+        raise HTTPException(status_code=500, detail="Database error occurred")
 
 
 @router.delete("/tasks/{id}")
@@ -74,10 +90,13 @@ async def delete_task(
     """
     Delete a specific task.
     """
-    success = data_delete_task(user_id, id)
-    if not success:
-        raise HTTPException(status_code=404, detail="Task not found")
-    return {"message": "Task deleted successfully"}
+    try:
+        success = data_delete_task(user_id, id)
+        if not success:
+            raise HTTPException(status_code=404, detail="Task not found")
+        return {"message": "Task deleted successfully"}
+    except SQLAlchemyError as e:
+        raise HTTPException(status_code=500, detail="Database error occurred")
 
 
 @router.patch("/tasks/{id}/complete", response_model=Task)
@@ -88,7 +107,10 @@ async def toggle_task_completion(
     """
     Toggle the completion status of a task.
     """
-    task = data_toggle_completion(user_id, id)
-    if task is None:
-        raise HTTPException(status_code=404, detail="Task not found")
-    return task
+    try:
+        task = data_toggle_completion(user_id, id)
+        if task is None:
+            raise HTTPException(status_code=404, detail="Task not found")
+        return task
+    except SQLAlchemyError as e:
+        raise HTTPException(status_code=500, detail="Database error occurred")

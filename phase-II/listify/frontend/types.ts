@@ -1,4 +1,5 @@
 import { LucideIcon } from "lucide-react";
+import { ReactNode } from "react";
 
 export interface ILink {
     name: string;
@@ -54,3 +55,41 @@ export interface ITestimonial {
     image: string;
     rating: 5 | 4 | 3 | 2 | 1;
 };
+
+export interface DashboardLayoutProps {
+    children: ReactNode
+}
+
+
+export interface User {
+    id: string
+    email: string
+    name?: string
+    image?: string | null
+    emailVerified?: boolean
+}
+
+export interface DashboardStats {
+    total: number
+    completed: number
+    pending: number
+    completionRate: number
+}
+
+export interface Task {
+    id: string
+    user_id: string
+    title: string
+    description?: string
+    completed: boolean
+    created_at: string
+    updated_at: string
+    createdAt?: string // Keep for backward compatibility if needed temporarily
+    dueDate?: string
+    optimistic?: boolean // For UI optimistic updates
+}
+
+
+export interface PublicLayoutProps {
+    children: ReactNode;
+}
