@@ -15,7 +15,7 @@ export default function PricingSection() {
                 <SectionTitle
                     icon={CircleDollarSignIcon}
                     title="Simple, transparent pricing"
-                    subtitle="Choose a plan that fits your team - scale as you build, launch and grow with AI agents."
+                    subtitle="Choose a plan that fits your productivity needs - scale as you organize, manage and grow."
                 />
                 <AnimatedContent className="p-1 mt-10 border border-orange-200 bg-orange-50 rounded-full">
                     <button

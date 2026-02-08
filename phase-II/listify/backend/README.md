@@ -1,15 +1,16 @@
-# Todo API Backend (Phase II)
+# Listify Backend API
 
-This is a FastAPI-based backend application for the Todo API (Phase II) as part of the Evolution of Todo project.
+This is a FastAPI-based backend application for the Listify todo application. It provides a robust API for managing tasks with user authentication and secure data storage.
 
 ## Features
 
 - REST-style endpoints for todo task management
-- In-memory data storage (runtime only)
+- PostgreSQL database integration with SQLModel
 - Full CRUD operations for tasks
 - Task completion toggling
+- User-specific task management
 - CORS enabled for frontend integration
-- No authentication required (Phase II specification)
+- Secure database operations
 
 ## Endpoints
 
@@ -27,12 +28,18 @@ This is a FastAPI-based backend application for the Todo API (Phase II) as part 
    pip install -r requirements.txt
    ```
 
-2. Run the application:
+2. Set up environment variables (ensure DATABASE_URL is configured)
+
+3. Run the application:
    ```bash
    uvicorn main:app --reload
    ```
 
-3. The API will be available at `http://localhost:8000`
+4. The API will be available at `http://localhost:8000`
+
+## Database Configuration
+
+This backend connects to a PostgreSQL database. The connection string is retrieved from the frontend's .env file or environment variables. Make sure to set up your DATABASE_URL appropriately.
 
 ## CORS Configuration
 
@@ -42,5 +49,5 @@ This backend is configured with CORS middleware to allow cross-origin requests f
 
 Run the test script to verify all functionality:
 ```bash
-python test_app.py
+python verify_endpoints.py
 ```

@@ -10,7 +10,7 @@ export default function OurTeamSection() {
                 <SectionTitle
                     icon={HandshakeIcon}
                     title="Meet Our Team"
-                    subtitle="A passionate team of builders, designers and engineers shaping the future of AI-powered products."
+                    subtitle="A passionate team of developers and designers creating simple, effective productivity tools."
                 />
                 <div className="flex flex-wrap items-center justify-center gap-10 md:gap-6 mt-24">
                     {team.map((member, index) => (

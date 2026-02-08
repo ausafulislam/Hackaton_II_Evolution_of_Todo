@@ -1,6 +1,6 @@
 {
-  "name": "Buildify- PrebuiltUI",
-  "short_name": "Buildify",
+  "name": "Listify - Todo Application",
+  "short_name": "Listify",
   "icons": [
     {
       "src": "/assets/web-app-manifest-192x192.png",

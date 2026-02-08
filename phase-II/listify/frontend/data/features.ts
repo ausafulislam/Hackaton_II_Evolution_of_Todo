@@ -50,9 +50,9 @@ export const features: IFeature[] = [
         iconBg: "bg-lime-500"
     },
     {
-        title: "AI Assistance (Planned)",
+        title: "Advanced Features (Planned)",
         description:
-            "Upcoming AI-powered features and voice interaction to make task management effortless.",
+            "Upcoming advanced features and smart automation to make task management effortless.",
         icon: SparklesIcon,
         cardBg: "bg-gray-50",
         iconBg: "bg-orange-500"

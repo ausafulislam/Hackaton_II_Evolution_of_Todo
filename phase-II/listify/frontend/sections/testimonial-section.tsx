@@ -10,7 +10,7 @@ export default function TestimonialSection() {
                 <SectionTitle
                     icon={ShieldCheckIcon}
                     title="What our users say"
-                    subtitle="Teams trust Buildify to build, deploy and scale reliable AI agents in real-world production."
+                    subtitle="Trusted by thousands to organize tasks and boost productivity every day."
                 />
                 <div className="flex flex-wrap gap-8 items-center justify-center mt-24">
                     {testimonials.map((testimonial, index) => (

@@ -17,13 +17,13 @@ export default function HeroSection() {
                             src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=50"
                             alt="userImage2" />
                     </div>
-                    <span>1K+</span>
+                    <span>5K+</span>
                     <div className="h-5 w-px mx-1 bg-white rounded-full" />
-                    <span>Happy users worldwide</span>
+                    <span>Tasks organized</span>
                     <div className="h-5 w-px mx-1 bg-white rounded-full" />
                     <div className="flex items-center gap-1 pr-3">
                         <StarIcon className="size-4.5 fill-orange-500 stroke-orange-500" />
-                        <span>4.9</span>
+                        <span>4.8</span>
                     </div>
                 </AnimatedContent>
                 <AnimatedContent distance={30} delay={0.1} className="relative">
