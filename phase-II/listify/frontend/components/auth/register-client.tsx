@@ -17,8 +17,10 @@ async function hashPassword(password: string) {
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-const LoginClient = () => {
+
+const RegisterClient = () => {
     const [loadingProvider, setLoadingProvider] = useState<string | null>(null);
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -53,31 +55,32 @@ const LoginClient = () => {
         }
     }
 
-    const handleLogin = async (e: React.FormEvent) => {
+    const handleSignup = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
         try {
             const hashed = await hashPassword(password);
-            const { data, error } = await authClient.signIn.email({
+            const { data, error } = await authClient.signUp.email({
                 email,
                 password: hashed,
+                name,
                 callbackURL: "/dashboard",
             });
 
-            if (data) {
-                toast.success('Login successful!');
-            }
 
             if (error) {
-                toast.error(error.message || 'Login failed. Please try again.');
+                toast.error(error.message || 'Registration failed. Please try again.');
+            } else {
+                toast.success('Registration successful! Redirecting...');
             }
         } catch (error) {
-            console.error('Login error:', error);
+            console.error('Registration error:', error);
             toast.error('Something went wrong! Please try again.');
         } finally {
             setIsSubmitting(false);
         }
     }
+
     return (
         <div className="min-h-screen pt-20 w-full flex items-center justify-center px-4 md:px-16 lg:px-24 xl:px-32">
 
@@ -99,14 +102,14 @@ const LoginClient = () => {
                         <SectionTitle
                             dir="left"
                             icon={SparkleIcon}
-                            title="Sign In"
-                            subtitle="Welcome back! Please sign in to continue"
+                            title="Sign Up"
+                            subtitle="Create your account to get started"
                         />
 
                         <AnimatedContent>
                             <form
                                 className="md:w-96 w-80 flex flex-col items-center justify-center"
-                                onSubmit={handleLogin}
+                                onSubmit={handleSignup}
                             >
                                 {/* Social Buttons */}
                                 <div className="mt-10 mb-2 grid w-full grid-cols-3 gap-6">
@@ -189,8 +192,21 @@ const LoginClient = () => {
                                 {/* Divider */}
                                 <div className="flex items-center gap-4 w-full my-5">
                                     <div className="flex-1 h-px bg-gray-300/90"></div>
-                                    <p className="text-nowrap text-sm text-gray-500/90">or sign in with email</p>
+                                    <p className="text-nowrap text-sm text-gray-500/90">or sign up with email</p>
                                     <div className="flex-1 h-px bg-gray-300/90"></div>
+                                </div>
+
+                                {/* Name */}
+                                <div className="flex items-center w-full border border-gray-300/60 h-12 rounded-full pl-6 gap-2 mb-6">
+                                    <input
+                                        type="text"
+                                        placeholder="Full Name"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        autoComplete="name"
+                                        className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full"
+                                        required
+                                    />
                                 </div>
 
                                 {/* Email */}
@@ -213,23 +229,10 @@ const LoginClient = () => {
                                         placeholder="Password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        autoComplete="current-password"
+                                        autoComplete="new-password"
                                         className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full"
                                         required
                                     />
-                                </div>
-
-                                {/* Remember */}
-                                <div className="w-full flex items-center justify-between mt-8 text-gray-500/80">
-                                    <div className="flex items-center gap-2">
-                                        <input className="h-4" type="checkbox" id="checkbox" />
-                                        <label className="text-sm text-orange-500" htmlFor="checkbox">
-                                            Remember me
-                                        </label>
-                                    </div>
-                                    <a className="text-sm underline" href="#">
-                                        Forgot password?
-                                    </a>
                                 </div>
 
                                 {/* Submit */}
@@ -243,15 +246,13 @@ const LoginClient = () => {
                                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                         </svg>
-                                    ) : (
-                                        'Login'
-                                    )}
+                                    ) : 'Register'}
                                 </button>
 
                                 <p className="text-gray-500/90 text-sm mt-4">
-                                    Don’t have an account?{' '}
-                                    <a className="text-orange-500 hover:underline" href="/register">
-                                        Sign up
+                                    Already have an account?{' '}
+                                    <a className="text-orange-500 hover:underline" href="/login">
+                                        Sign in
                                     </a>
                                 </p>
                             </form>
@@ -264,4 +265,4 @@ const LoginClient = () => {
     )
 }
 
-export default LoginClient
+export default RegisterClient
