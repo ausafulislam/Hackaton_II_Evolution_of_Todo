@@ -12,9 +12,9 @@ export const auth = betterAuth({
         signIn: '/login',
     },
 
-    // emailAndPassword: {
-    //     enabled: true,
-    // },
+    emailAndPassword: {
+        enabled: true,
+    },
 
     socialProviders: {
         github: {
