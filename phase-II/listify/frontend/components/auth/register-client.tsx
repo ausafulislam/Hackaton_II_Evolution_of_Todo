@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import SectionTitle from '@/components/section-title'
 import { SparkleIcon } from 'lucide-react'
 import AnimatedContent from '@/components/animated-content'
@@ -24,6 +25,7 @@ const RegisterClient = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const router = useRouter();
 
     const signinWithGithub = async () => {
         setLoadingProvider('github');
@@ -72,6 +74,7 @@ const RegisterClient = () => {
                 toast.error(error.message || 'Registration failed. Please try again.');
             } else {
                 toast.success('Registration successful! Redirecting...');
+                router.push('/dashboard');
             }
         } catch (error) {
             console.error('Registration error:', error);

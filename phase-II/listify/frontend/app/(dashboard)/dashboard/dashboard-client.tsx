@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 import {
     CheckCircle2,
     ListTodo,
@@ -12,6 +13,8 @@ import {
     ArrowRight,
     Calendar,
     Target,
+    AlertCircle,
+    BadgeCheck as BadgeCheckIcon
 } from 'lucide-react'
 import { SignOutButton } from '@/components/auth/signout-button'
 import Link from 'next/link'
@@ -76,7 +79,19 @@ export default function DashboardClient({ user }: { user: User }) {
                         <h1 className="text-2xl font-bold text-foreground">
                             {user.name || 'Dashboard'}
                         </h1>
-                        <p className="text-sm text-muted-foreground">{user.email}</p>
+                        <div className="flex items-center gap-2">
+                            <p className="text-sm text-muted-foreground">{user.email}</p>
+                            {user.emailVerified ? (
+                                <BadgeCheckIcon className="size-4 text-blue-500" />
+                            ) : (
+                                <Link href="/profile">
+                                    <Badge variant="outline" className="bg-red-50 text-red-600 border-red-200 gap-1 px-2 py-0.5 hover:bg-red-100 transition-colors cursor-pointer text-xs">
+                                        <AlertCircle className="size-3" />
+                                        Not Verified
+                                    </Badge>
+                                </Link>
+                            )}
+                        </div>
                     </div>
                     <SignOutButton />
                 </div>

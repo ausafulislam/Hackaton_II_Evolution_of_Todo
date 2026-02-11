@@ -4,10 +4,15 @@ import { useMemo } from 'react'
 import { Card } from '@/components/ui/card'
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import useTasks from '@/hooks/useTasks'
-import { Loader2 } from 'lucide-react'
+import { Loader2, ShieldAlert, AlertCircle, ArrowRight } from 'lucide-react'
+import { authClient } from '@/lib/auth-client'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export default function AnalyticsPage() {
+    const { data: session } = authClient.useSession();
     const { tasks, loading } = useTasks();
+    const isVerified = session?.user?.emailVerified;
 
     // Calculate dynamic metrics
     const { totalTasks, completedTasks, pendingTasks, completionPercentage } = useMemo(() => {
@@ -66,116 +71,143 @@ export default function AnalyticsPage() {
     }
 
     return (
-        <div className="space-y-8">
-            {/* Header */}
-            <div>
-                <h1 className="text-4xl font-bold text-foreground text-pretty">Analytics</h1>
-                <p className="text-muted-foreground mt-2">
-                    Track your productivity and task completion metrics
-                </p>
-            </div>
+        <div className="relative min-h-[50vh]">
+            {/* Overlay for Unverified Users */}
+            {!isVerified && (
+                <div className="absolute inset-0 z-50 flex items-center justify-center bg-background/30 backdrop-blur-[2px]">
+                    <Card className="max-w-md p-8 text-center shadow-2xl border-orange-100 flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-300">
+                        <div className="p-4 bg-red-50 rounded-full">
+                            <ShieldAlert className="w-12 h-12 text-red-600" />
+                        </div>
+                        <div className="space-y-2">
+                            <h2 className="text-2xl font-bold text-foreground">Verification Required</h2>
+                            <p className="text-muted-foreground">
+                                You are not a verified user. To access premium data features like Analytics, please verify your email first.
+                            </p>
+                        </div>
+                        <Link href="/profile" className="w-full">
+                            <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white gap-2">
+                                <AlertCircle className="w-4 h-4" />
+                                Verify Now
+                                <ArrowRight className="w-4 h-4" />
+                            </Button>
+                        </Link>
+                    </Card>
+                </div>
+            )}
 
-            {/* Key Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <Card className="p-6 border border-border">
-                    <p className="text-sm text-muted-foreground font-medium">Total Tasks</p>
-                    <p className="text-3xl font-bold text-foreground mt-2">{totalTasks}</p>
-                    <div className="mt-3 w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-                        <div className="bg-blue-500 h-1.5 rounded-full" style={{ width: '100%' }}></div>
-                    </div>
-                </Card>
+            {/* Main Content (Blurred if unverified) */}
+            <div className={`space-y-8 transition-all duration-300 ${!isVerified ? 'blur-[4px] pointer-events-none select-none' : ''}`}>
+                {/* Header */}
+                <div>
+                    <h1 className="text-4xl font-bold text-foreground text-pretty">Analytics</h1>
+                    <p className="text-muted-foreground mt-2">
+                        Track your productivity and task completion metrics
+                    </p>
+                </div>
 
-                <Card className="p-6 border border-border">
-                    <p className="text-sm text-muted-foreground font-medium">Completed</p>
-                    <p className="text-3xl font-bold text-green-600 mt-2">{completedTasks}</p>
-                    <div className="mt-3 w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-                        <div
-                            className="bg-green-500 h-1.5 rounded-full transition-all duration-500"
-                            style={{ width: `${totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0}%` }}
-                        ></div>
-                    </div>
-                </Card>
+                {/* Key Metrics */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <Card className="p-6 border border-border">
+                        <p className="text-sm text-muted-foreground font-medium">Total Tasks</p>
+                        <p className="text-3xl font-bold text-foreground mt-2">{totalTasks}</p>
+                        <div className="mt-3 w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
+                            <div className="bg-blue-500 h-1.5 rounded-full" style={{ width: '100%' }}></div>
+                        </div>
+                    </Card>
 
-                <Card className="p-6 border border-border">
-                    <p className="text-sm text-muted-foreground font-medium">Pending</p>
-                    <p className="text-3xl font-bold text-orange-600 mt-2">{pendingTasks}</p>
-                    <div className="mt-3 w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-                        <div
-                            className="bg-orange-500 h-1.5 rounded-full transition-all duration-500"
-                            style={{ width: `${totalTasks > 0 ? (pendingTasks / totalTasks) * 100 : 0}%` }}
-                        ></div>
-                    </div>
-                </Card>
+                    <Card className="p-6 border border-border">
+                        <p className="text-sm text-muted-foreground font-medium">Completed</p>
+                        <p className="text-3xl font-bold text-green-600 mt-2">{completedTasks}</p>
+                        <div className="mt-3 w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
+                            <div
+                                className="bg-green-500 h-1.5 rounded-full transition-all duration-500"
+                                style={{ width: `${totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0}%` }}
+                            ></div>
+                        </div>
+                    </Card>
 
-                <Card className="p-6 border border-border">
-                    <p className="text-sm text-muted-foreground font-medium">Completion %</p>
-                    <p className="text-3xl font-bold text-purple-600 mt-2">{completionPercentage}%</p>
-                    <div className="mt-3 w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-                        <div
-                            className="bg-purple-500 h-1.5 rounded-full transition-all duration-500"
-                            style={{ width: `${completionPercentage}%` }}
-                        ></div>
-                    </div>
-                </Card>
-            </div>
+                    <Card className="p-6 border border-border">
+                        <p className="text-sm text-muted-foreground font-medium">Pending</p>
+                        <p className="text-3xl font-bold text-orange-600 mt-2">{pendingTasks}</p>
+                        <div className="mt-3 w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
+                            <div
+                                className="bg-orange-500 h-1.5 rounded-full transition-all duration-500"
+                                style={{ width: `${totalTasks > 0 ? (pendingTasks / totalTasks) * 100 : 0}%` }}
+                            ></div>
+                        </div>
+                    </Card>
 
-            {/* Charts Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Daily Activity Chart */}
-                <Card className="p-6 border border-border">
-                    <h2 className="text-lg font-semibold text-foreground mb-4">Daily Activity (Last 7 Days)</h2>
-                    <div className="h-[300px] w-full">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={dailyData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                                <XAxis dataKey="date" stroke="#9ca3af" style={{ fontSize: '12px' }} />
-                                <YAxis stroke="#9ca3af" style={{ fontSize: '12px' }} />
-                                <Tooltip
-                                    contentStyle={{
-                                        backgroundColor: '#fff',
-                                        border: '1px solid #e5e7eb',
-                                        borderRadius: '8px',
-                                    }}
-                                />
-                                <Legend />
-                                <Bar name="Created" dataKey="created" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                                <Bar name="Completed" dataKey="completed" fill="#22c55e" radius={[4, 4, 0, 0]} />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                </Card>
+                    <Card className="p-6 border border-border">
+                        <p className="text-sm text-muted-foreground font-medium">Completion %</p>
+                        <p className="text-3xl font-bold text-purple-600 mt-2">{completionPercentage}%</p>
+                        <div className="mt-3 w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
+                            <div
+                                className="bg-purple-500 h-1.5 rounded-full transition-all duration-500"
+                                style={{ width: `${completionPercentage}%` }}
+                            ></div>
+                        </div>
+                    </Card>
+                </div>
 
-                {/* Task Distribution Pie Chart */}
-                <Card className="p-6 border border-border">
-                    <h2 className="text-lg font-semibold text-foreground mb-4">Status Distribution</h2>
-                    <div className="h-[300px] w-full">
-                        {totalTasks === 0 ? (
-                            <div className="flex items-center justify-center h-full text-muted-foreground">
-                                No data available
-                            </div>
-                        ) : (
+                {/* Charts Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* Daily Activity Chart */}
+                    <Card className="p-6 border border-border">
+                        <h2 className="text-lg font-semibold text-foreground mb-4">Daily Activity (Last 7 Days)</h2>
+                        <div className="h-[300px] w-full">
                             <ResponsiveContainer width="100%" height="100%">
-                                <PieChart>
-                                    <Pie
-                                        data={statusData}
-                                        cx="50%"
-                                        cy="50%"
-                                        labelLine={false}
-                                        label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
-                                        outerRadius={80}
-                                        fill="#8884d8"
-                                        dataKey="value"
-                                    >
-                                        {statusData.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={entry.color} />
-                                        ))}
-                                    </Pie>
-                                    <Tooltip />
-                                </PieChart>
+                                <BarChart data={dailyData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                    <XAxis dataKey="date" stroke="#9ca3af" style={{ fontSize: '12px' }} />
+                                    <YAxis stroke="#9ca3af" style={{ fontSize: '12px' }} />
+                                    <Tooltip
+                                        contentStyle={{
+                                            backgroundColor: '#fff',
+                                            border: '1px solid #e5e7eb',
+                                            borderRadius: '8px',
+                                        }}
+                                    />
+                                    <Legend />
+                                    <Bar name="Created" dataKey="created" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                                    <Bar name="Completed" dataKey="completed" fill="#22c55e" radius={[4, 4, 0, 0]} />
+                                </BarChart>
                             </ResponsiveContainer>
-                        )}
-                    </div>
-                </Card>
+                        </div>
+                    </Card>
+
+                    {/* Task Distribution Pie Chart */}
+                    <Card className="p-6 border border-border">
+                        <h2 className="text-lg font-semibold text-foreground mb-4">Status Distribution</h2>
+                        <div className="h-[300px] w-full">
+                            {totalTasks === 0 ? (
+                                <div className="flex items-center justify-center h-full text-muted-foreground">
+                                    No data available
+                                </div>
+                            ) : (
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <PieChart>
+                                        <Pie
+                                            data={statusData}
+                                            cx="50%"
+                                            cy="50%"
+                                            labelLine={false}
+                                            label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
+                                            outerRadius={80}
+                                            fill="#8884d8"
+                                            dataKey="value"
+                                        >
+                                            {statusData.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={entry.color} />
+                                            ))}
+                                        </Pie>
+                                        <Tooltip />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                            )}
+                        </div>
+                    </Card>
+                </div>
             </div>
         </div>
     )

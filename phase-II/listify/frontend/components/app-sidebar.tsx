@@ -14,7 +14,8 @@ import {
     SidebarHeader,
     useSidebar,
 } from '@/components/ui/sidebar'
-import { LayoutDashboard, CheckSquare, BarChart3, BadgeCheck } from 'lucide-react'
+import { LayoutDashboard, CheckSquare, BarChart3, BadgeCheck, User as UserIcon, AlertCircle } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 import { SignOutButton } from '@/components/auth/signout-button'
 import {
     DropdownMenu,
@@ -38,6 +39,7 @@ export default function AppSidebar({ user }: AppSidebarProps) {
         { title: 'Dashboard', url: '/dashboard', icon: LayoutDashboard },
         { title: 'Todos', url: '/todos', icon: CheckSquare },
         { title: 'Analytics', url: '/analytics', icon: BarChart3 },
+        { title: 'Profile', url: '/profile', icon: UserIcon },
     ]
 
     // console.log('User in Sidebar:', user); for debugging 
@@ -54,8 +56,8 @@ export default function AppSidebar({ user }: AppSidebarProps) {
                         width={150}
                         height={42}
                         className={`absolute transition-all duration-200 ${state === "collapsed"
-                                ? "opacity-0 scale-95"
-                                : "opacity-100 scale-100"
+                            ? "opacity-0 scale-95"
+                            : "opacity-100 scale-100"
                             }`}
                     />
 
@@ -66,8 +68,8 @@ export default function AppSidebar({ user }: AppSidebarProps) {
                         width={32}
                         height={32}
                         className={`absolute transition-all duration-200 ${state === "collapsed"
-                                ? "opacity-100 scale-100"
-                                : "opacity-0 scale-95"
+                            ? "opacity-100 scale-100"
+                            : "opacity-0 scale-95"
                             }`}
                     />
 
@@ -105,19 +107,26 @@ export default function AppSidebar({ user }: AppSidebarProps) {
                                     size="lg"
                                     className="data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
                                 >
-                                    {user?.image ? (
-                                        <Image
-                                            src={user.image}
-                                            alt={user.name || 'User Avatar'}
-                                            width={32}
-                                            height={32}
-                                            className="rounded-full"
-                                        />
-                                    ) : (
-                                        <div className="flex aspect-square size-8 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-white font-bold">
-                                            {(user?.name || user?.email)?.charAt(0).toUpperCase() || 'U'}
-                                        </div>
-                                    )}
+                                    <div className="relative">
+                                        {user?.image ? (
+                                            <Image
+                                                src={user.image}
+                                                alt={user.name || 'User Avatar'}
+                                                width={32}
+                                                height={32}
+                                                className="rounded-full"
+                                            />
+                                        ) : (
+                                            <div className="flex aspect-square size-8 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-white font-bold">
+                                                {(user?.name || user?.email)?.charAt(0).toUpperCase() || 'U'}
+                                            </div>
+                                        )}
+                                        {user?.emailVerified !== true && (
+                                            <div className="absolute -top-1 -right-1 flex size-4 items-center justify-center rounded-full bg-red-500 border-2 border-white shadow-sm">
+                                                <AlertCircle className="size-2.5 text-white" />
+                                            </div>
+                                        )}
+                                    </div>
 
                                     <div className="grid flex-1 text-left text-sm leading-tight data-[state=collapsed]:hidden">
                                         <span className="truncate font-semibold flex items-center gap-1">
