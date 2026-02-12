@@ -218,6 +218,9 @@ export default function ProfileClient({ user }: ProfileClientProps) {
                                     accept="image/*"
                                     onChange={handleImageUpload}
                                 />
+                                <p className="text-[10px] text-orange-600/70 mt-2 text-center max-w-[96px] leading-tight italic">
+                                    Note: Custom images may be featured on our landing page.
+                                </p>
                             </div>
 
 

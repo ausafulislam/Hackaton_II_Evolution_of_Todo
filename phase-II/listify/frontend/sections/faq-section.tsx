@@ -15,7 +15,7 @@ export default function FaqSection() {
                     />
                 </div>
             </div>
-            <div className="px-4 md:px-16 lg:px-24 xl:px-32 border-t border-gray-200">
+            <div className="px-4 md:px-16 lg:px-20 xl:px-32 border-t border-gray-200">
                 <div className="grid grid-cols-1 md:grid-cols-2 divide-x divide-gray-200 border-x border-gray-200 max-w-7xl mx-auto">
                     <div className="p-4 pt-20 md:p-20 space-y-6">
                         {faqs.map((faq, index) => (
@@ -33,7 +33,7 @@ export default function FaqSection() {
                         ))}
                     </div>
                     <div className="p-4 pt-20 md:p-20">
-                        <div className="sticky top-30 flex items-center justify-between gap-5 p-6 bg-violet-500 w-full rounded-xl mt-12">
+                        <div className="sticky top-30 flex flex-col items-start lg:flex-row lg:items-center lg:justify-between gap-5 p-6 bg-violet-500 w-full rounded-xl mt-12">
                             <h3 className="text-lg text-white text-balance">
                                 Need help getting started with Listify?
                             </h3>
