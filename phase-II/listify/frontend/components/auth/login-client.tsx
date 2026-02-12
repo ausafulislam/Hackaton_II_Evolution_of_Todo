@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react';
+import Link from 'next/link'
 import SectionTitle from '@/components/section-title'
-import { SparkleIcon } from 'lucide-react'
+import { SparkleIcon, Eye, EyeOff } from 'lucide-react'
 import AnimatedContent from '@/components/animated-content'
 
 import toast from 'react-hot-toast'
@@ -22,6 +23,7 @@ const LoginClient = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const signinWithGithub = async () => {
         setLoadingProvider('github');
@@ -207,9 +209,9 @@ const LoginClient = () => {
                                 </div>
 
                                 {/* Password */}
-                                <div className="flex items-center mt-6 w-full border border-gray-300/60 h-12 rounded-full pl-6 gap-2">
+                                <div className="flex items-center mt-6 w-full border border-gray-300/60 h-12 rounded-full pl-6 pr-4 gap-2">
                                     <input
-                                        type="password"
+                                        type={showPassword ? "text" : "password"}
                                         placeholder="Password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
@@ -217,6 +219,13 @@ const LoginClient = () => {
                                         className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full"
                                         required
                                     />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="text-gray-500 hover:text-gray-700 transition-colors"
+                                    >
+                                        {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                                    </button>
                                 </div>
 
                                 {/* Remember */}
@@ -227,9 +236,9 @@ const LoginClient = () => {
                                             Remember me
                                         </label>
                                     </div>
-                                    <a className="text-sm underline" href="#">
+                                    <Link className="text-sm underline" href="/forgot-password">
                                         Forgot password?
-                                    </a>
+                                    </Link>
                                 </div>
 
                                 {/* Submit */}

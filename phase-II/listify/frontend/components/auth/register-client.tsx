@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import SectionTitle from '@/components/section-title'
-import { SparkleIcon } from 'lucide-react'
+import { SparkleIcon, Eye, EyeOff } from 'lucide-react'
 import AnimatedContent from '@/components/animated-content'
 
 import toast from 'react-hot-toast'
@@ -25,6 +25,7 @@ const RegisterClient = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
 
     const signinWithGithub = async () => {
@@ -226,9 +227,9 @@ const RegisterClient = () => {
                                 </div>
 
                                 {/* Password */}
-                                <div className="flex items-center mt-6 w-full border border-gray-300/60 h-12 rounded-full pl-6 gap-2">
+                                <div className="flex items-center mt-6 w-full border border-gray-300/60 h-12 rounded-full pl-6 pr-4 gap-2">
                                     <input
-                                        type="password"
+                                        type={showPassword ? "text" : "password"}
                                         placeholder="Password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
@@ -236,6 +237,13 @@ const RegisterClient = () => {
                                         className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full"
                                         required
                                     />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="text-gray-500 hover:text-gray-700 transition-colors"
+                                    >
+                                        {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                                    </button>
                                 </div>
 
                                 {/* Submit */}

@@ -3,19 +3,64 @@ import CustomIcon from "@/components/custom-icon";
 import { SparkleIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { db } from '@/db';
+import { user } from '@/db/schema';
+import { sql, and, not, ilike } from 'drizzle-orm';
 
-export default function HeroSection() {
+// Default fallback images
+const DEFAULT_IMAGES = [
+    "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=50",
+    "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=50"
+];
+
+async function getRandomUserImages() {
+    try {
+        // Fetch 2 random users who have locally uploaded profile images
+        // Exclude OAuth images (Google, GitHub) to avoid rate limiting
+        const randomUsers = await db
+            .select({ image: user.image })
+            .from(user)
+            .where(
+                and(
+                    sql`${user.image} IS NOT NULL`,
+                    not(ilike(user.image, '%googleusercontent.com%')),
+                    not(ilike(user.image, '%githubusercontent.com%')),
+                    not(ilike(user.image, '%github.com%'))
+                )
+            )
+            .orderBy(sql`RANDOM()`)
+            .limit(2);
+
+        const userImages = randomUsers?.map((u) => u.image).filter((img): img is string => !!img) || [];
+
+        // If we have user images, use them; otherwise use defaults
+        if (userImages.length >= 2) {
+            return userImages.slice(0, 2);
+        } else if (userImages.length === 1) {
+            return [userImages[0], DEFAULT_IMAGES[1]];
+        }
+
+        return DEFAULT_IMAGES;
+    } catch (error) {
+        console.error('Error fetching user images:', error);
+        return DEFAULT_IMAGES;
+    }
+}
+
+export default async function HeroSection() {
+    const userImages = await getRandomUserImages();
+
     return (
         <section className="bg-[url('/assets/hero-gradient-bg.png')] bg-cover bg-center bg-no-repeat px-4 md:px-16 lg:px-24 xl:px-32">
             <div className="max-w-7xl mx-auto flex flex-col items-center justify-center h-screen">
                 <AnimatedContent reverse distance={30} className="flex items-center gap-2 bg-white/50 backdrop-blur p-1 rounded-full">
                     <div className="flex items-center -space-x-3">
                         <img className="size-7 rounded-full border-2 border-white"
-                            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=50"
-                            alt="userImage1" />
+                            src={userImages[0]}
+                            alt="User 1" />
                         <img className="size-7 rounded-full border-2 border-white"
-                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=50"
-                            alt="userImage2" />
+                            src={userImages[1]}
+                            alt="User 2" />
                     </div>
                     <span>5K+</span>
                     <div className="h-5 w-px mx-1 bg-white rounded-full" />

@@ -3,8 +3,11 @@ import {
     CheckCircleIcon,
     LayoutDashboardIcon,
     ShieldCheckIcon,
-    BellIcon,
-    SparklesIcon
+    MailIcon,
+    BarChart3Icon,
+    UserCircleIcon,
+    LockIcon,
+    UsersIcon
 } from "lucide-react";
 import { IFeature } from "../types";
 
@@ -12,7 +15,7 @@ export const features: IFeature[] = [
     {
         title: "Create & Manage Tasks",
         description:
-            "Easily add, edit and organize your daily tasks so nothing important is ever forgotten.",
+            "Easily add, edit and organize your daily tasks with a clean, intuitive interface. Never forget what's important.",
         icon: ListChecksIcon,
         cardBg: "bg-orange-100",
         iconBg: "bg-orange-500"
@@ -20,41 +23,57 @@ export const features: IFeature[] = [
     {
         title: "Mark Tasks Complete",
         description:
-            "Track progress by marking tasks as complete and stay motivated throughout your day.",
+            "Track your progress by marking tasks as complete. Stay motivated and see your productivity grow.",
         icon: CheckCircleIcon,
         cardBg: "bg-green-100",
         iconBg: "bg-green-500"
     },
     {
-        title: "Clean & Focused Interface",
+        title: "Email Verification",
         description:
-            "A distraction-free dashboard designed to keep you focused and productive.",
-        icon: LayoutDashboardIcon,
-        cardBg: "bg-indigo-100",
-        iconBg: "bg-indigo-500"
+            "Secure your account with OTP-based email verification. Includes smart resend countdown to prevent spam.",
+        icon: MailIcon,
+        cardBg: "bg-blue-100",
+        iconBg: "bg-blue-500"
     },
     {
-        title: "Secure & Reliable",
+        title: "Analytics Dashboard",
         description:
-            "Built on a modern backend architecture to keep your tasks safe and always accessible.",
-        icon: ShieldCheckIcon,
+            "Visualize your productivity with charts and metrics. Track completion rates and daily activity (verified users only).",
+        icon: BarChart3Icon,
+        cardBg: "bg-purple-100",
+        iconBg: "bg-purple-500"
+    },
+    {
+        title: "Profile Management",
+        description:
+            "Customize your profile with image uploads, update your information, and manage your account settings.",
+        icon: UserCircleIcon,
         cardBg: "bg-pink-100",
         iconBg: "bg-pink-500"
     },
     {
-        title: "Smart Reminders (Coming Soon)",
+        title: "Secure Authentication",
         description:
-            "Get notified about important tasks with reminders and alerts planned for future updates.",
-        icon: BellIcon,
-        cardBg: "bg-lime-100",
-        iconBg: "bg-lime-500"
+            "SHA-256 password hashing, social login with Google & GitHub, and industry-standard security practices.",
+        icon: LockIcon,
+        cardBg: "bg-red-100",
+        iconBg: "bg-red-500"
     },
     {
-        title: "Advanced Features (Planned)",
+        title: "Clean & Focused Interface",
         description:
-            "Upcoming advanced features and smart automation to make task management effortless.",
-        icon: SparklesIcon,
-        cardBg: "bg-gray-50",
-        iconBg: "bg-orange-500"
+            "A distraction-free dashboard with modern design, smooth animations, and responsive layouts for all devices.",
+        icon: LayoutDashboardIcon,
+        cardBg: "bg-teal-100",
+        iconBg: "bg-teal-500"
+    },
+    {
+        title: "Community Presence",
+        description:
+            "Your custom profile pictures are dynamically showcased on our landing page, celebrating our growing community of users.",
+        icon: UsersIcon,
+        cardBg: "bg-amber-100",
+        iconBg: "bg-amber-500"
     }
 ];
