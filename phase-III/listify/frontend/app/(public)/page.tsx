@@ -1,0 +1,30 @@
+import { getSession } from "@/lib/auth"
+import FaqSection from "@/sections/faq-section"
+import FeaturesSection from "@/sections/features-section"
+import HeroSection from "@/sections/hero-section"
+import OurTeamSection from "@/sections/our-team"
+import PricingSection from "@/sections/pricing-section"
+import StatsSection from "@/sections/stats-section"
+import TestimonialSection from "@/sections/testimonial-section"
+import { redirect } from "next/navigation"
+
+const LandingPage = async () => {
+    const session = await getSession();
+
+    if (session) redirect('/dashboard');
+
+
+    return (
+        <main>
+            <HeroSection />
+            <StatsSection />
+            <FeaturesSection />
+            <FaqSection />
+            {/* <OurTeamSection /> */}
+            {/* <PricingSection /> */}
+            {/* <TestimonialSection /> */}
+        </main>
+    )
+}
+
+export default LandingPage
