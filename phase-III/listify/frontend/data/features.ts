@@ -14,9 +14,9 @@ import { IFeature } from "../types";
 
 export const features: IFeature[] = [
     {
-        title: "AI Chat Assistant",
+        title: "Voice-Powered AI Bot",
         description:
-            "Manage your tasks using natural language. Just chat with our AI to add, delete, or organize your list effortlessly.",
+            "Manage tasks with natural language or voice commands. Supports English and Urdu for a truly global productivity experience.",
         icon: SparkleIcon,
         cardBg: "bg-purple-100",
         iconBg: "bg-purple-500"

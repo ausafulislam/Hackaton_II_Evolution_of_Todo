@@ -34,7 +34,12 @@ export const faqs: IFaq[] = [
     {
         question: "How does the AI Assistant work?",
         answer:
-            "Our AI Assistant uses advanced natural language processing to understand your requests. You can ask it to 'add a meeting tomorrow at 2 PM' or 'remove duplicate tasks', and it will handle the rest.",
+            "Our AI Assistant uses advanced natural language processing. You can type or use your voice to say things like 'add a meeting tomorrow at 2 PM' or 'remove duplicate tasks', and it will handle the rest.",
+    },
+    {
+        question: "Does the voice assistant support Urdu?",
+        answer:
+            "Yes! You can switch between English and Urdu voice recognition using the language selector in the chat interface. It accurately transcribes and processes instructions in both languages.",
     },
     {
         question: "Is the AI Chatbot secure?",

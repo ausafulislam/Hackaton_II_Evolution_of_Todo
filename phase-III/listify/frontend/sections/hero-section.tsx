@@ -81,7 +81,7 @@ export default async function HeroSection() {
                 </AnimatedContent>
                 <AnimatedContent distance={30} delay={0.2}>
                     <p className="text-center text-base/7 text-zinc-500 max-w-lg mt-4">
-                        Meet your new AI productivity partner. Chat with our intelligent assistant to create, manage, and organize your tasks using natural language.
+                        Meet your new AI productivity partner. Manage your tasks effortlessly with <strong>voice commands</strong> and <strong>multilingual support</strong> (English & Urdu). Just speak, and let AI handle the rest.
                     </p>
                 </AnimatedContent>
                 <AnimatedContent className="flex flex-col md:flex-row items-center gap-4 mt-6 w-full md:w-auto">
