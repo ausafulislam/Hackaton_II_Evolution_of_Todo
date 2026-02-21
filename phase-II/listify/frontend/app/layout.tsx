@@ -67,6 +67,7 @@ export default function RootLayout({
                 <LenisScroll />
                 {/* <Navbar /> */}
                 {children}
+                <p className="M-1">This site is shift on <a href="https://lisitfy.vercel.app">Here!</a></p>
                 {/* <Footer /> */}
             </body>
         </html>

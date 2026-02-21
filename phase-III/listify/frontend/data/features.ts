@@ -7,11 +7,20 @@ import {
     BarChart3Icon,
     UserCircleIcon,
     LockIcon,
-    UsersIcon
+    UsersIcon,
+    SparkleIcon
 } from "lucide-react";
 import { IFeature } from "../types";
 
 export const features: IFeature[] = [
+    {
+        title: "AI Chat Assistant",
+        description:
+            "Manage your tasks using natural language. Just chat with our AI to add, delete, or organize your list effortlessly.",
+        icon: SparkleIcon,
+        cardBg: "bg-purple-100",
+        iconBg: "bg-purple-500"
+    },
     {
         title: "Create & Manage Tasks",
         description:
