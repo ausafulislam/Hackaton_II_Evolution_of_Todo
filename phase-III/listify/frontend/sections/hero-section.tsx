@@ -72,8 +72,8 @@ export default async function HeroSection() {
                     </div>
                 </AnimatedContent>
                 <AnimatedContent distance={30} delay={0.1} className="relative">
-                    <h1 className="text-center font-urbanist text-5xl/15 md:text-6xl/18 mt-4 font-bold max-w-2xl">
-                        Organize your tasks. Simplify your life.
+                    <h1 className="text-center font-urbanist text-5xl/15 md:text-6xl/18 mt-4 font-bold max-w-2xl text-pretty">
+                        Smart tasks. Driven by AI. Simplify your life.
                     </h1>
                     <div className="absolute -top-5 right-13 hidden md:block">
                         <CustomIcon icon={SparkleIcon} dir="right" />
@@ -81,7 +81,7 @@ export default async function HeroSection() {
                 </AnimatedContent>
                 <AnimatedContent distance={30} delay={0.2}>
                     <p className="text-center text-base/7 text-zinc-500 max-w-lg mt-4">
-                        Create, manage, and complete your daily tasks with a fast, secure, and beautifully designed Todo app built for productivity.
+                        Meet your new AI productivity partner. Chat with our intelligent assistant to create, manage, and organize your tasks using natural language.
                     </p>
                 </AnimatedContent>
                 <AnimatedContent className="flex flex-col md:flex-row items-center gap-4 mt-6 w-full md:w-auto">

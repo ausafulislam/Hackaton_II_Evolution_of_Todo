@@ -31,4 +31,14 @@ export const faqs: IFaq[] = [
         answer:
             "Currently, Listify focuses on simplicity with basic task management. Advanced organization features like categories and tags are planned for future releases.",
     },
+    {
+        question: "How does the AI Assistant work?",
+        answer:
+            "Our AI Assistant uses advanced natural language processing to understand your requests. You can ask it to 'add a meeting tomorrow at 2 PM' or 'remove duplicate tasks', and it will handle the rest.",
+    },
+    {
+        question: "Is the AI Chatbot secure?",
+        answer:
+            "Yes, your conversations with the AI are private and securely processed. The assistant only has access to the tasks within your account to help you manage them.",
+    },
 ];
